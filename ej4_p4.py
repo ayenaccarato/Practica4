@@ -13,10 +13,10 @@ def leerArchivo(nombre):
 def abrircoordenadas(filename):
     lista_coordenadas = []
     with open(filename,'r') as file:
-        datos = file.readlines()
+        datos = json.load(file)
         for coor in datos:
-            coor = coor.replace('(','').replace(')','').replace('[','').replace(']','').replace('"','').replace('\n','').replace(',','')
-            x,y = coor.split('/')
+            coor = coor.replace('(','').replace(')','').replace('[','').replace(']','')
+            x,y = coor.split(',')
             lista_coordenadas.append((int(x),int(y)))
     return lista_coordenadas
 
@@ -27,7 +27,7 @@ def ziprandom(lis1,lis2):
 def abrircolores(filename):
     lista_colores = []
     with open(filename,'r') as colores:
-        color = colores.readlines()
+        color = json.load(colores)
         for c in color:
             c = c.replace('[','').replace(']','').replace('\n','').replace('"','').replace(',','')
             lista_colores.append(c)
